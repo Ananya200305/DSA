@@ -9,7 +9,7 @@ class Solution {
     int kthElement(vector<int>& a, vector<int>& b, int k) {
         int size = a.size() + b.size();
         vector<int> arr(size);
-        int number;
+        // int number;
         
         int i = 0;
         int p1 = 0;
