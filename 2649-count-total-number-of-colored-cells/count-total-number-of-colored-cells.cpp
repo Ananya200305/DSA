@@ -1,12 +1,14 @@
 class Solution {
 public:
     long long coloredCells(int n) {
-        long long cells = 1;
+        // long long cells = 1;
 
-        for(int i = 2; i <= n; i++){
-            cells = cells + 4*(i-1);
-        }
+        // for(int i = 2; i <= n; i++){
+        //     cells = cells + 4*(i-1);
+        // }
 
-        return cells;
+        // return cells;
+
+        return  1 + 2LL * n * (n-1);
     }
 };
