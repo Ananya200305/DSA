@@ -7,7 +7,8 @@ public:
         int max_end = intervals[0][1];
         
         for (auto& interval : intervals) {
-            int start = interval[0], end = interval[1];
+            int start = interval[0];
+            int end = interval[1];
             if (max_end <= start) {
                 sections++;
             }
@@ -18,13 +19,13 @@ public:
     }
     
     bool checkValidCuts(int n, vector<vector<int>>& rectangles) {
-        vector<vector<int>> x_intervals, y_intervals;
+        vector<vector<int>> x, y;
         
-        for (auto& rect : rectangles) {
-            x_intervals.push_back({rect[0], rect[2]});
-            y_intervals.push_back({rect[1], rect[3]});
+        for (auto& rectangle : rectangles) {
+            x.push_back({rectangle[0], rectangle[2]});
+            y.push_back({rectangle[1], rectangle[3]});
         }
         
-        return check(x_intervals) || check(y_intervals);
+        return check(x) || check(y);
     }
 };
