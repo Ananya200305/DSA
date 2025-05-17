@@ -22,6 +22,7 @@ public:
                 case blue :
                     swap(nums[m], nums[r]);
                     r--;
+                    break;
             }
         }
     }
