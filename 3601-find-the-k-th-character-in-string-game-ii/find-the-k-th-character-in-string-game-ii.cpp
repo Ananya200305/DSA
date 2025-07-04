@@ -2,24 +2,26 @@ class Solution {
 public:
     char kthCharacter(long long k, vector<int>& operations) {
         int shift = 0;
-        vector<long long> lengths;
         long long len = 1;
+        vector<long long>length;
 
-        for (int op : operations) {
-            len *= 2;
-            lengths.push_back(len);
-            if (len >= k) break;
+        for(int op : operations){
+            len = len * 2;
+            length.push_back(len);
+            if(len >= k) break;
         }
 
-        for (int i = lengths.size() - 1; i >= 0; --i) {
-            long long half = lengths[i] / 2;
-            int op = operations[i];
-            if (k > half) {
-                k -= half;
-                if (op == 1) shift++;
+        for(int j = length.size()-1; j >= 0; j--){
+            long long half = length[j]/2;
+            int op = operations[j];
+            if(k > half){
+                k = k - half;
+                if(op == 1){
+                    shift++;
+                }
             }
         }
 
-        return (char)((('a' - 'a' + shift) % 26) + 'a');
+        return (char) ((('a' - 'a' + shift) % 26) + 'a');
     }
 };
