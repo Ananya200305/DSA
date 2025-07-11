@@ -22,7 +22,7 @@ public:
         int prev = 0;
         int currI = 0;
 
-        for(int i = 0; i < n; i++){
+        for(int i = 1; i < n; i++){
             int pick = nums[i];
             if(i > 1){
                 pick = pick + prev;
