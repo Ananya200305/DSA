@@ -19,17 +19,17 @@ public:
 
         int n = nums.size();
         int prev1 = nums[0];
-        int prev = 0;
+        int prev2 = 0;
         int currI = 0;
 
         for(int i = 1; i < n; i++){
             int pick = nums[i];
             if(i > 1){
-                pick = pick + prev;
+                pick = pick + prev2;
             }
             int notPick = 0 + prev1;
             currI = max(pick, notPick);
-            prev = prev1;
+            prev2 = prev1;
             prev1 = currI;
         }
 
