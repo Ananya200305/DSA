@@ -6,7 +6,7 @@ public:
         for(int i = 0; i < nums.size(); i++){
             int rem = target - nums[i];
 
-            if(map.count(rem)){
+            if(map.find(rem) != map.end()){
                 return {map[rem], i};
             }
 
