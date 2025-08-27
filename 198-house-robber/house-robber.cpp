@@ -1,38 +1,20 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-        // int n = nums.size();
-        // vector<int> dp(n,-1);
-
-        // dp[0] = nums[0];
-
-        // for(int i = 1; i < n; i++){
-        //     int pick = nums[i];
-        //     if(i > 1){
-        //         pick = pick + dp[i-2];
-        //     }
-        //     int notPick = 0 + dp[i-1];
-        //     dp[i] = max(pick, notPick);
-        // }
-
-        // return dp[n-1];
-
-        int n = nums.size();
-        int prev1 = nums[0];
-        int prev2 = 0;
-        int currI = 0;
-
-        for(int i = 1; i < n; i++){
-            int pick = nums[i];
-            if(i > 1){
-                pick = pick + prev2;
-            }
-            int notPick = 0 + prev1;
-            currI = max(pick, notPick);
-            prev2 = prev1;
-            prev1 = currI;
+    int helper(vector<int>& nums, int i, vector<int>& dp){
+        if(i >= nums.size()){
+            return 0;
         }
 
-        return prev1;
+        if(dp[i] != -1) return dp[i];
+
+        int steal = nums[i] + helper(nums,i+2,dp);
+        int skip = helper(nums,i+1,dp);
+
+        return dp[i] = max(steal, skip);
+    }
+
+    int rob(vector<int>& nums) {
+        vector<int>dp(nums.size(), -1);
+        return helper(nums,0, dp);
     }
 };
