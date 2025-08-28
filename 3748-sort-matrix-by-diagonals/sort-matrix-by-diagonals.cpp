@@ -4,17 +4,17 @@ public:
         int n = grid.size();
         unordered_map<int, vector<int>> map;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                map[i - j].push_back(grid[i][j]);
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0; j < n ;j++){
+                map[i-j].push_back(grid[i][j]);
             }
         }
 
-        for (auto& [key, val] : map) {
-            if (key >= 0) {
-                sort(val.rbegin(), val.rend());  
-            } else {
-                sort(val.begin(), val.end());   
+        for(auto & [key, value] : map){
+            if(key < 0){
+                sort(value.begin(), value.end());
+            }else{
+                sort(value.rbegin(), value.rend());
             }
         }
 
