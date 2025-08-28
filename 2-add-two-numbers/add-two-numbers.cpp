@@ -14,11 +14,11 @@ public:
             }
             if (l2 != nullptr) {
                 sum += l2->val;
-                l2 = l2->next;  // Fixed typo here
+                l2 = l2->next;  
             }
 
             carry = sum / 10;
-            curr->next = new ListNode(sum % 10); // Fixed memory allocation
+            curr->next = new ListNode(sum % 10); 
             curr = curr->next;
         }
 
