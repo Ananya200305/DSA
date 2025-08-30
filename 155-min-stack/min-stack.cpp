@@ -9,15 +9,16 @@ public:
     void push(int val) {
         st.push(val);
 
-        if(minS.empty() || val <= minS.top()){
+        if(minS.empty() || minS.top() >= val){
             minS.push(val);
         }
     }
     
     void pop() {
-        if(minS.top() == st.top()){
+        if(st.top() == minS.top()){
             minS.pop();
         }
+
         st.pop();
     }
     
