@@ -10,14 +10,14 @@ public:
             right++;
         }
 
-        if(ans.size() < right - left){
+        if(ans.size() < right - left ){
             ans = s.substr(left+1, right - left - 1);
         }
     }
     string longestPalindrome(string s) {
-        for(int i = 0; i < s.size(); i++){
+        for(int i = 0 ; i < s.size(); i++){
             expand(s,i,i);
-            expand(s,i,i+1);
+            expand(s,i, i+1);
         }
 
         return ans;
