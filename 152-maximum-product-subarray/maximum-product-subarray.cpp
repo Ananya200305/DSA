@@ -3,32 +3,30 @@ public:
     int maxProduct(vector<int>& nums) {
         int n = nums.size();
 
-        if(n == 0) return 0;
+        int prod = nums[0];
+        int maxProd = nums[0];
 
-        int max_product = nums[0];
-        int current = nums[0];
-
-        for(int i = 1; i < n; i++){
-            if(current == 0){
-                current = nums[i];
+        for(int i = 1; i < nums.size(); i++){
+            if(prod == 0){
+                prod = nums[i];
             }else{
-                current = current * nums[i];
+                prod = prod * nums[i];
             }
-            max_product = max(max_product, current);
+            maxProd = max(maxProd, prod);
         }
 
-        current = nums[n-1];
-        max_product = max(max_product, current);
+        prod = nums[n-1];
+        maxProd = max(maxProd, prod);
 
         for(int i = n-2; i >= 0; i--){
-            if(current == 0){
-                current = nums[i];
+            if(prod == 0){
+                prod = nums[i];
             }else{
-                current = current * nums[i];
+                prod = prod * nums[i];
             }
-            max_product = max(max_product, current);
+            maxProd = max(maxProd, prod);
         }
 
-        return max_product;
+        return maxProd;
     }
 };
