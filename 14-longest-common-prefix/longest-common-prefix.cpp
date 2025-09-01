@@ -10,7 +10,7 @@ public:
 
         int prefix = 0;
 
-        for(int i = 0; i < n; i++){
+        for(int i = 0 ; i < n ; i++){
             if(first[i] == last[i]){
                 prefix++;
             }else{
