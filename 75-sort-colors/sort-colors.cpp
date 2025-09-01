@@ -1,27 +1,23 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        const char red = 0;
-        const char white = 1;
-        const char blue = 2;
+        int left = 0;
+        int mid = 0;
+        int right = nums.size() - 1;
 
-        int l = 0;
-        int m = 0;
-        int r = nums.size() - 1;
-
-        while(m <= r){
-            switch(nums[m]){
-                case red:
-                    swap(nums[l],nums[m]);
-                    l++;
-                    m++;
+        while(mid <= right){
+            switch(nums[mid]){
+                case 0: 
+                    swap(nums[left], nums[mid]);
+                    left++;
+                    mid++;
                     break;
-                case white :
-                    m++;
+                case 1:
+                    mid++;
                     break;
-                case blue :
-                    swap(nums[m], nums[r]);
-                    r--;
+                case 2: 
+                    swap(nums[mid], nums[right]);
+                    right--;
                     break;
             }
         }
