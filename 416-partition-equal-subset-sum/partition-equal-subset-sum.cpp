@@ -1,23 +1,21 @@
 class Solution {
 public:
-  
     bool canPartition(vector<int>& nums) {
         int total = 0;
-    for (int n : nums) total += n;
-    if (total % 2 != 0) return false;
-    int target = total / 2;
+        for(int num : nums) total += num;
+        if(total % 2 != 0) return false;
 
-    unordered_set<int> sums = {0};
+        int target = total / 2;
+        vector<bool>dp(target+1,false);
+        dp[0] = true;
 
-    for (int num : nums) {
-        unordered_set<int> newSums;
-        for (int s : sums) {
-            if (s + num == target) return true;
-            if (s + num < target) newSums.insert(s + num);
+        for(int num : nums){
+            for(int i = target ; i >= num; i--){
+                if(dp[i-num]) dp[i] = true;
+                if(dp[target]) return true;
+            }
         }
-        sums.insert(newSums.begin(), newSums.end());
-    }
 
-    return sums.find(target) != sums.end();
+        return false;
     }
 };
