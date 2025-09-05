@@ -4,11 +4,11 @@ public:
         int minPrice = prices[0];
         int maxProfit = 0;
 
-        for(int i = 1 ; i < prices.size(); i++){
+        for(int i = 0 ; i < prices.size(); i++){
             if(minPrice > prices[i]){
                 minPrice = prices[i];
             }else{
-                maxProfit = max(maxProfit, prices[i] - minPrice);
+                maxProfit = max(maxProfit, prices[i]- minPrice);
             }
         }
 
