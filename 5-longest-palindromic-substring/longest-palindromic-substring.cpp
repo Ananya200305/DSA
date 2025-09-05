@@ -3,14 +3,13 @@ public:
     string ans = "";
     void expand(string& s, int left, int right){
         while(left >= 0 && right < s.size()){
-            if(s[left] != s[right]){
-                break;
-            }
+            if(s[left] != s[right]) break;
+
             left--;
             right++;
         }
 
-        if(ans.size() < right - left ){
+        if(ans.size() < right - left){
             ans = s.substr(left+1, right - left - 1);
         }
     }
@@ -19,7 +18,6 @@ public:
             expand(s,i,i);
             expand(s,i, i+1);
         }
-
         return ans;
     }
 };
