@@ -1,21 +1,37 @@
 class Solution {
 public:
-    bool canPartition(vector<int>& nums) {
-        int total = 0;
-        for(int num : nums) total += num;
-        if(total % 2 != 0) return false;
+    // bool helper(vector<int>& nums, int i, int target, vector<bool> & dp){
+    //     if(target == 0) return true;
+    //     if(i >= nums.size() || target < 0) return false;
 
-        int target = total / 2;
-        vector<bool>dp(target+1,false);
-        dp[0] = true;
+    //     if(dp[i] != false) return dp[i];
+
+    //     if(dp[i] = helper(nums, i + 1, target-nums[i], dp)){
+    //         return true;
+    //     }
+
+    //     return dp[i] = helper(nums, i+1, target, dp);
+    // }
+    bool canPartition(vector<int>& nums) {
+        int sum = 0;
 
         for(int num : nums){
-            for(int i = target ; i >= num; i--){
-                if(dp[i-num]) dp[i] = true;
-                if(dp[target]) return true;
-            }
+            sum += num;
         }
 
+        if(sum % 2 != 0) return false;
+
+        vector<bool> dp(sum + 1 , false);
+
+        dp[0] = true;
+        sum = sum/2;
+
+        for(int num : nums){
+            for(int i = sum ; i >= num ; i--){
+                if(dp[i-num]) dp[i] = true;
+                if(dp[sum]) return true;
+            }
+        }
         return false;
     }
 };
