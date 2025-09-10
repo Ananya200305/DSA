@@ -5,7 +5,7 @@ public:
         vector<int>res;
 
         for(int i = 0 ; i < nums.size(); i++){
-            if(!dq.empty() && dq.front() == i-k){
+            while(!dq.empty() && dq.front() == i-k){
                 dq.pop_front();
             }
 
