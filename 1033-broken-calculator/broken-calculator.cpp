@@ -1,18 +1,17 @@
 class Solution {
 public:
     int brokenCalc(int startValue, int target) {
-        long long count = 0;
+        int ops = 0;
         while(target > startValue){
-            if(target % 2 != 0){
-                target = target + 1;
-                count++;
+            if(target % 2 == 0){
+                target = target / 2;
+                ops++;
             }else{
-                target = target/2;
-                count++;
+                target += 1;
+                ops++;
             }
         }
 
-
-        return count + (startValue - target);
+        return ops + (startValue - target);
     }
 };
