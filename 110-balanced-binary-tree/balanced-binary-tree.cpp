@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int checkHeight(TreeNode* root){
+    int checkHeight(TreeNode * root){
         if(root == NULL) return 0;
 
         int left = checkHeight(root -> left);
@@ -21,9 +21,8 @@ public:
 
         if(abs(left - right) > 1) return -1;
 
-        return 1+max(left,right);
+        return 1 + max(left, right);
     }
-
     bool isBalanced(TreeNode* root) {
         return checkHeight(root) != -1;
     }
