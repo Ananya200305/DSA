@@ -1,54 +1,47 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
     int countPaths(int n, vector<vector<int>>& roads) {
-        const int MOD = 1e9 + 7;
-        
-        // Step 1: Create Adjacency List
-        vector<vector<pair<int, int>>> graph(n);
-        for (auto& road : roads) {
-            int u = road[0], v = road[1], time = road[2];
-            graph[u].push_back({v, time});
-            graph[v].push_back({u, time});
+        const int MOD = 1e9+7;
+
+        vector<vector<pair<int, int>>> adj(n);
+
+        for(auto r : roads){
+            adj[r[0]].push_back({r[1], r[2]});
+            adj[r[1]].push_back({r[0], r[2]});
         }
 
-        // Step 2: Initialize Distance and Ways Arrays
+        priority_queue<vector<long long>, vector<vector<long long>>, greater<vector<long long>>> pq;
+        pq.push({0,0});
+
         vector<long long> dist(n, LLONG_MAX);
-        vector<int> ways(n, 0);
         dist[0] = 0;
+
+        vector<long long> ways(n,0);
         ways[0] = 1;
 
-        // Step 3: Min-Heap (Priority Queue)
-        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
-        pq.push({0, 0}); // {time, node}
-
-        // Step 4: Dijkstra's Algorithm
-        while (!pq.empty()) {
-            auto [curTime, node] = pq.top();
+        while(!pq.empty()){
+            auto top = pq.top();
             pq.pop();
+            long long time = top[0];
+            int node = top[1];
 
-            if (curTime > dist[node]) continue;
+            if(time > dist[node]) continue;
 
-            for (auto& [neighbor, time] : graph[node]) {
-                long long newTime = curTime + time;
+            for(auto neigh : adj[node]){
+                int next = neigh.first;
+                int t = neigh.second;
 
-                // Found a shorter path
-                if (newTime < dist[neighbor]) {
-                    dist[neighbor] = newTime;
-                    ways[neighbor] = ways[node]; // Inherit paths count
-                    pq.push({newTime, neighbor});
-                }
-                // Found another shortest path
-                else if (newTime == dist[neighbor]) {
-                    ways[neighbor] = (ways[neighbor] + ways[node]) % MOD;
+                if(dist[node] + t < dist[next]){
+                    dist[next] = dist[node] + t;
+                    ways[next] = ways[node];
+                    pq.push({dist[next], next});
+                }else if(dist[node] + t == dist[next]){
+                    ways[next] += (ways[node]) % MOD;
                 }
             }
         }
 
-        // Return the number of shortest paths to node (n-1)
-        return ways[n - 1];
+        return ways[n-1] % MOD;
     }
 };
 
