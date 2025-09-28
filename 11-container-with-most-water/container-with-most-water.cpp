@@ -6,10 +6,11 @@ public:
         int maxArea = 0;
 
         while(left < right){
-            int h = min(height[left] , height[right]);
-            int w = right - left ;
+            int h = min(height[left], height[right]);
+            int w = right - left;
             int area = h*w;
-            maxArea = max(maxArea, area);
+            maxArea = max(area, maxArea);
+
             if(height[left] < height[right]){
                 left++;
             }else{
