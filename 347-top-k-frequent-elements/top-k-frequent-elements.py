@@ -4,7 +4,7 @@ class Solution:
 
         for num in nums:
             freq[num] += 1
-        
+
         heap = []
 
         for i in freq.keys():
