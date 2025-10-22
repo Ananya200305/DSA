@@ -1,17 +1,25 @@
 class Solution:
-    def helper(self, nums: List[int], i: int, dp:List[int]) -> int:
-        if i >= len(nums):
-            return 0
+    # def helper(self, nums: List[int], i: int, dp:List[int]) -> int:
+    #     if i >= len(nums):
+    #         return 0
 
-        if dp[i] != -1:
-            return dp[i]
+    #     if dp[i] != -1:
+    #         return dp[i]
 
-        pick = nums[i] + self.helper(nums, i+2, dp)
-        unpick = self.helper(nums, i+1, dp)
+    #     pick = nums[i] + self.helper(nums, i+2, dp)
+    #     unpick = self.helper(nums, i+1, dp)
 
-        dp[i] = max(pick, unpick)
+    #     dp[i] = max(pick, unpick)
 
-        return dp[i]
+    #     return dp[i]
     def rob(self, nums: List[int]) -> int:
-        dp = [-1] * (len(nums)+1)
-        return self.helper(nums, 0, dp)
+        dp = [0] * (len(nums)+1)
+        dp[0] = 0
+        dp[1] = nums[0]
+
+        for i in range(2, len(nums)+1):
+            pick = nums[i-1] + dp[i-2]
+            unpick = dp[i-1]
+            dp[i] = max(pick, unpick)
+
+        return dp[len(nums)]
