@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<vector<int>>adj(numCourses);
+        vector<vector<int>> adj(numCourses);
 
         for(auto e : prerequisites){
             adj[e[1]].push_back(e[0]);
@@ -17,20 +17,20 @@ public:
 
         queue<int>q;
 
-        for(int i = 0 ; i < numCourses; i++){
+        for(int i = 0; i < numCourses; i++){
             if(indegree[i] == 0){
                 q.push(i);
             }
         }
 
-        vector<int> res;
+        vector<int>res;
 
         while(!q.empty()){
-            int node = q.front();
+            int c = q.front();
             q.pop();
-            res.push_back(node);
+            res.push_back(c);
 
-            for(auto it : adj[node]){
+            for(auto it : adj[c]){
                 indegree[it]--;
                 if(indegree[it] == 0){
                     q.push(it);
