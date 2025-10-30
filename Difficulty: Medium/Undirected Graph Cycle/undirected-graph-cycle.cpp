@@ -1,9 +1,10 @@
 class Solution {
   public:
-    bool bfs(int start, vector<int> adj[], vector<int>& visited){
-        queue<pair<int, int>>q;
-        visited[start] = 1;
-        q.push({start, -1});
+    bool bfs(vector<int>adj[], vector<bool>& visited, int n){
+        queue<pair<int, int>> q;
+        q.push({n, -1});
+        
+        visited[n] = true;
         
         while(!q.empty()){
             int node = q.front().first;
@@ -13,17 +14,15 @@ class Solution {
             
             for(auto neigh : adj[node]){
                 if(!visited[neigh]){
-                    visited[neigh] = 1;
+                    visited[neigh] = true;
                     q.push({neigh, node});
                 }else if(neigh != parent){
                     return true;
                 }
             }
         }
-        
         return false;
     }
-    
     bool isCycle(int V, vector<vector<int>>& edges) {
         vector<int> adj[V];
         
@@ -34,11 +33,13 @@ class Solution {
             adj[v].push_back(u);
         }
         
-        vector<int>visited(V, 0);
+        vector<bool>visited(V, false);
         
         for(int i = 0; i < V; i++){
             if(!visited[i]){
-                if(bfs(i, adj, visited)) return true; 
+                if(bfs(adj, visited, i)){
+                    return true;
+                }
             }
         }
         
