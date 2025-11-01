@@ -7,7 +7,7 @@ public:
             int rem = target - nums[i];
 
             if(map.find(rem) != map.end()){
-                return {i, map[rem]};
+                return {map[rem], i};
             }
 
             map[nums[i]] = i;
