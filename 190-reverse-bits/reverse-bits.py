@@ -1,14 +1,13 @@
 class Solution:
     def reverseBits(self, n: int) -> int:
-        temp = ""
+        res = ""
 
-        while n: 
-            temp = str(n%2) + temp 
+        while n > 0:
+            res = str(n % 2) + res
             n = n // 2
 
-        temp = temp.zfill(32)
-        print(temp)
+        res = res.zfill(32)
 
-        temp = temp[::-1]
+        res = res[::-1]
 
-        return int(temp,2)
+        return int(res,2)
