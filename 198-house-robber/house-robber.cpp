@@ -1,17 +1,18 @@
 class Solution {
 public:
+    int helper(vector<int>& nums, int i, vector<int>& dp){
+        if(i < 0) return 0;
+
+        if(dp[i] != -1) return dp[i];
+
+        int pick = nums[i] + helper(nums, i-2, dp);
+        int unpick = helper(nums,i-1,dp);
+
+        return dp[i] = max(pick, unpick);
+    }
     int rob(vector<int>& nums) {
         int n = nums.size();
-
-        vector<int>dp(n+1, 0);
-        dp[1] = nums[0];
-
-        for(int i = 2; i <= n; i++){
-            int pick = nums[i-1] + dp[i-2];
-            int unpick = dp[i-1];
-            dp[i] = max(pick, unpick);
-        }
-
-        return dp[n]; 
+        vector<int>dp(n,-1);
+        return helper(nums, n-1, dp);
     }
 };
