@@ -7,7 +7,7 @@ public:
         if(dp[i][j] != -1) return dp[i][j];
 
         int up = helper(i-1, j, dp);
-        int left = helper(i, j-1, dp);
+        int left = helper(i,j-1, dp);
 
         return dp[i][j] = up+left;
     }
