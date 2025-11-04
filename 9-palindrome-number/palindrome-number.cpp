@@ -3,13 +3,15 @@ public:
     bool isPalindrome(int x) {
         if(x < 0 || (x != 0 && x % 10 == 0)) return false;
 
-        int reverse = 0;
+        long long reverse = 0;
+        long long copy = x;
 
-        while(x > reverse){
-            reverse = reverse * 10 + x % 10;
-            x = x / 10;
+        while(copy){
+            reverse = reverse * 10 + (copy % 10);
+            copy = copy / 10;
         }
 
-        return x == reverse || x == reverse/10;
+        cout << reverse << endl;
+        return x == reverse;
     }
 };
