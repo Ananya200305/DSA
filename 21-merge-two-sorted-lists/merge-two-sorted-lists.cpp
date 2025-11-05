@@ -15,6 +15,7 @@ public:
         if(list2 == NULL) return list1;
 
         ListNode* newHead = NULL;
+
         if(list1 -> val <= list2 -> val){
             newHead = list1;
             newHead -> next = mergeTwoLists(list1 -> next, list2);
