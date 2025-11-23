@@ -7,7 +7,7 @@ public:
         bool firstRow = false;
         bool firstCol = false;
 
-        for(int i = 0; i < row; i++){
+        for(int i = 0 ; i < row; i++){
             if(matrix[i][0] == 0){
                 firstCol = true;
                 break;
@@ -39,13 +39,13 @@ public:
         }
 
         if(firstRow){
-            for(int i = 0 ; i < col; i++){
+            for(int i = 0; i < col; i++){
                 matrix[0][i] = 0;
             }
         }
 
         if(firstCol){
-            for(int i = 0 ; i < row; i++){
+            for(int i = 0; i < row; i++){
                 matrix[i][0] = 0;
             }
         }
