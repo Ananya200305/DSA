@@ -26,13 +26,14 @@ public:
         if(left == right) return lists[left];
 
         int mid = left + (right - left)/2;
+
         ListNode* l1 = divideAndConquer(lists, left, mid);
-        ListNode* l2 = divideAndConquer(lists, mid + 1, right);
+        ListNode* l2 = divideAndConquer(lists, mid+1, right);
 
         return merge(l1, l2);
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if(lists.empty()) return NULL;
+        if(lists.size() == 0) return NULL;
         return divideAndConquer(lists, 0, lists.size()-1);
     }
 };
