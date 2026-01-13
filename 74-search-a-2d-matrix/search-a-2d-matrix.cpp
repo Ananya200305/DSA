@@ -10,12 +10,13 @@ public:
         while(l <= r){
             int mid = l + (r - l)/2;
             int midVal = matrix[mid/col][mid%col];
-            if(midVal == target){
+
+            if(target == midVal){
                 return true;
-            }else if(midVal > target){
-                r = mid - 1;
-            }else{
+            }else if(target > midVal){
                 l = mid + 1;
+            }else{
+                r = mid - 1;
             }
         }
 
