@@ -1,50 +1,59 @@
 class Solution {
   public:
-    int merge(vector<int> &arr, int left, int mid, int right){
-        vector<int>temp;
+    int merge(vector<int> &arr, int low, int mid, int high){
+        int j = mid + 1;
+        
         int count = 0;
         
-        int low = left;
-        int high = mid+1;
+        for(int i = low; i <= mid; i++){
+            while(j <= high && arr[i] > arr[j]){
+                j++;
+            }
+            
+            count += (j - (mid+1));
+        }
         
-        while(low <= mid && high <= right){
-            if(arr[low] <= arr[high]){
-                temp.push_back(arr[low++]);
+        int left = low;
+        int right = mid + 1;
+        
+        vector<int>temp;
+        
+        while(left <= mid && right <= high){
+            if(arr[left] <= arr[right]){
+                temp.push_back(arr[left++]);
             }else{
-                temp.push_back(arr[high++]);
-                count += (mid - low + 1);
+                temp.push_back(arr[right++]);
             }
         }
         
-        while(low <= mid){
-            temp.push_back(arr[low++]);
+        while(left <= mid){
+            temp.push_back(arr[left++]);
         }
         
-        while(high <= right){
-            temp.push_back(arr[high++]);
+        while(right <= high){
+            temp.push_back(arr[right++]);
         }
         
-        for(int i = left; i <= right; i++){
-            arr[i] = temp[i-left];
+        for(int i = low ; i <= high; i++){
+            arr[i] = temp[i - low];
         }
         
         return count;
     }
-    
-    int mergeSort(vector<int> &arr, int left, int right){
-        if(left >= right) return 0;
+    int mergeSort(vector<int> &arr, int low, int high){
+        if(low >= high) return 0;
+        
+        int mid = low + (high - low)/2;
         
         int count = 0;
         
-        int mid = left + (right - left)/2;
-        
-        count += mergeSort(arr, left, mid);
-        count += mergeSort(arr, mid+1, right);
-        count += merge(arr, left, mid, right);
+        count += mergeSort(arr, low, mid);
+        count += mergeSort(arr, mid+1, high);
+        count += merge(arr, low, mid, high);
         
         return count;
     }
     int inversionCount(vector<int> &arr) {
-        return mergeSort(arr,0,arr.size()-1);
+        return mergeSort(arr, 0, arr.size()-1);
     }
 };
