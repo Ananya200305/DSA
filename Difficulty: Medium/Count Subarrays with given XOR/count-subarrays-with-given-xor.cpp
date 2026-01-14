@@ -6,7 +6,7 @@ class Solution {
         int x = 0;
         int count = 0;
         
-        for(int i = 0; i < arr.size(); i++){
+        for(int i = 0 ; i < arr.size(); i++){
             x = x ^ arr[i];
             int rem = x ^ k;
             
