@@ -1,23 +1,23 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        int n = s.length();
-        string ans = "";
+        reverse(s.begin(), s.end());
 
-        reverse(s.begin(),s.end());
+        string res = "";
 
-        for(int i = 0; i < n ; i++){
+        for(int i = 0; i < s.size(); i++){
             string word = "";
-            while(i < n && s[i] != ' '){
-                word += s[i];
+            while(i < s.size() && s[i] != ' '){
+                word.push_back(s[i]);
                 i++;
             }
-            reverse(word.begin(),word.end());
 
-            if(word.length() > 0){
-                ans += " " + word;
+            if(!word.empty()){
+                reverse(word.begin(), word.end());
+                res += ' ' + word;
             }
         }
-        return ans.substr(1);
+
+        return res.substr(1);
     }
 };
