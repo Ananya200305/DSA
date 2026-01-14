@@ -4,12 +4,12 @@ public:
         int j = mid + 1;
         int count = 0;
 
-        for(int i = low ; i <= mid ; i++){
-            while(j <= high && (long long)nums[i] > 2LL * nums[j]){
+        for(int i = low; i <= mid; i++){
+            while(j <= high && nums[i] > 2LL * nums[j]){
                 j++;
             }
 
-            count += (j - (mid + 1));
+            count += (j - (mid+1));
         }
 
         vector<int>temp;
@@ -19,7 +19,7 @@ public:
         while(left <= mid && right <= high){
             if(nums[left] <= nums[right]){
                 temp.push_back(nums[left++]);
-            }else if(nums[left] >= nums[right]){
+            }else if(nums[right] <= nums[left]){
                 temp.push_back(nums[right++]);
             }
         }
@@ -38,7 +38,6 @@ public:
 
         return count;
     }
-
     int mergeSort(vector<int>& nums, int low, int high){
         if(low >= high) return 0;
 
@@ -46,14 +45,13 @@ public:
 
         int mid = low + (high - low)/2;
 
-        count += mergeSort(nums,low,mid);
-        count += mergeSort(nums,mid+1, high);
-        count += merge(nums,low,mid,high);
+        count += mergeSort(nums, low, mid);
+        count += mergeSort(nums, mid+1, high);
+        count += merge(nums, low, mid, high);
 
         return count;
     }
-
     int reversePairs(vector<int>& nums) {
-        return mergeSort(nums,0,nums.size()-1);
+        return mergeSort(nums, 0, nums.size()-1);
     }
 };
