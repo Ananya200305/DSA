@@ -7,16 +7,16 @@ public:
         bool firstRow = false;
         bool firstCol = false;
 
-        for(int i = 0 ; i < row; i++){
-            if(matrix[i][0] == 0){
-                firstCol = true;
+        for(int i = 0; i < col; i++){
+            if(matrix[0][i] == 0){
+                firstRow = true;
                 break;
             }
         }
 
-        for(int i = 0; i < col; i++){
-            if(matrix[0][i] == 0){
-                firstRow = true;
+        for(int i = 0; i < row; i++){
+            if(matrix[i][0] == 0){
+                firstCol = true;
                 break;
             }
         }
