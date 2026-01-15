@@ -6,7 +6,7 @@ public:
 
         for(int i = 1; i < nums.size(); i++){
             sub = max(sub + nums[i], nums[i]);
-            maxSub = max(maxSub, sub);
+            maxSub = max(sub, maxSub);
         }
 
         return maxSub;
