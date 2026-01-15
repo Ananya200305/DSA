@@ -11,8 +11,9 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        stack<int>st;
+        // if(head == NULL && head -> next == NULL) return true;
 
+        stack<int>st;
         ListNode* slow = head;
         ListNode* fast = head;
 
@@ -22,9 +23,9 @@ public:
             fast = fast -> next -> next;
         }
 
-        if(fast != nullptr) slow = slow -> next;
+        if(fast != NULL) slow = slow -> next;
 
-        while(!st.empty() && slow){
+        while(!st.empty() && slow != NULL){
             if(st.top() != slow -> val){
                 return false;
             }
