@@ -7,13 +7,13 @@ public:
 
         vector<vector<int>>res;
 
-        vector<int> prev = intervals[0];
+        vector<int>prev = intervals[0];
 
-        for(int i = 1; i < intervals.size(); i++){
-            vector<int> interval = intervals[i];
+        for(int i = 1; i< intervals.size(); i++){
+            vector<int>interval = intervals[i];
 
             if(prev[1] >= interval[0]){
-                prev[1] = max(interval[1], prev[1]);
+                prev[1] = max(prev[1], interval[1]);
             }else{
                 res.push_back(prev);
                 prev = interval;
