@@ -5,12 +5,12 @@ public:
         m = m-1;
         n = n-1;
 
-        while(k > 0 && n >= 0 && m >= 0){
+        while(m >= 0 && n >= 0 && k > 0){
             if(nums1[m] <= nums2[n]){
                 nums1[k] = nums2[n];
                 k--;
                 n--;
-            }else{
+            }else if(nums1[m] >= nums2[n]){
                 nums1[k] = nums1[m];
                 k--;
                 m--;
