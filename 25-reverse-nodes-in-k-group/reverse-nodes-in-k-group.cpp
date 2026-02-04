@@ -29,15 +29,15 @@ public:
         ListNode* temp = head;
 
         while(temp && count < k){
-            temp = temp -> next;
             count++;
+            temp = temp -> next;
         }
 
         if(count < k) return head;
 
         ListNode* newHead = reverse(head, temp);
 
-        head -> next = reverseKGroup(temp , k);
+        head -> next = reverseKGroup(temp, k);
 
         return newHead;
     }
