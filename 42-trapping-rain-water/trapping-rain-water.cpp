@@ -9,19 +9,19 @@ public:
 
         int rain = 0;
 
-        while(l < r){
+        while(l <= r){
             if(height[l] < height[r]){
                 if(lMax < height[l]){
                     lMax = height[l];
                 }else{
-                    rain += lMax - height[l];
+                    rain += (lMax - height[l]);
                 }
                 l++;
             }else{
                 if(rMax < height[r]){
                     rMax = height[r];
                 }else{
-                    rain += rMax - height[r];
+                    rain += (rMax - height[r]);
                 }
                 r--;
             }
