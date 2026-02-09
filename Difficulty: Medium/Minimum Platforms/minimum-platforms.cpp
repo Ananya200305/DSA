@@ -1,7 +1,6 @@
 class Solution {
   public:
     int minPlatform(vector<int>& arr, vector<int>& dep) {
-        // code here
         int n = arr.size();
         int m = dep.size();
         
@@ -10,20 +9,21 @@ class Solution {
         
         int i = 0;
         int j = 0;
-        int maxusedPlatform = 0;
-        int usingPlatforms = 0;
+        
+        int usingPlatform = 0;
+        int maxUsed = 0;
         
         while(i < n && j < m){
             if(arr[i] <= dep[j]){
                 i++;
-                usingPlatforms++;
-                maxusedPlatform = max(maxusedPlatform, usingPlatforms);
+                usingPlatform++;
+                maxUsed = max(maxUsed, usingPlatform);
             }else{
                 j++;
-                usingPlatforms--;
+                usingPlatform--;
             }
         }
         
-        return maxusedPlatform;
+        return maxUsed;
     }
 };
