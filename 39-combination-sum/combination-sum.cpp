@@ -1,8 +1,8 @@
 class Solution {
 public:
-    void helper(vector<int>& candidates, int target, int index, vector<vector<int>> &result, int sum, vector<int> &curr){
+    void helper(vector<int>& candidates, int target, vector<vector<int>>& res, vector<int>& curr, int index, int sum){
         if(sum == target){
-            result.push_back(curr);
+            res.push_back(curr);
             return;
         }
 
@@ -11,15 +11,17 @@ public:
         }
 
         curr.push_back(candidates[index]);
-        helper(candidates, target, index, result, sum + candidates[index], curr);
+        helper(candidates, target, res, curr, index, sum+candidates[index]);
         curr.pop_back();
-        helper(candidates, target, index+1, result, sum , curr);
-
+        helper(candidates, target, res, curr, index+1, sum);
     }
+    
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<vector<int>> result;
-        vector<int> curr;
-        helper(candidates, target, 0, result, 0, curr);
-        return result;
+        vector<vector<int>>res;
+        vector<int>curr;
+
+        helper(candidates, target, res, curr, 0, 0);
+
+        return res;
     }
 };
