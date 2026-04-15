@@ -10,16 +10,16 @@
  * };
  */
 class Solution {
-public:
-    int helper(TreeNode* root, int & maxSum){
+public: 
+    int helper(TreeNode* root, int & pathSum){
         if(root == NULL) return 0;
 
-        int lh = max(0 , helper(root -> left, maxSum));
-        int rh = max(0, helper(root -> right, maxSum));
+        int left = max(0, helper(root -> left, pathSum));
+        int right = max(0, helper(root -> right, pathSum));
 
-        maxSum = max(maxSum, root -> val + lh + rh);
+        pathSum = max(pathSum, root -> val + left + right);
 
-        return root -> val + max(lh, rh);
+        return root -> val + max(left , right);
     }
     int maxPathSum(TreeNode* root) {
         int pathSum = INT_MIN;
