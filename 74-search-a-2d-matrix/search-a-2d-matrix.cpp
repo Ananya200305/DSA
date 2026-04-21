@@ -4,19 +4,22 @@ public:
         int row = matrix.size();
         int col = matrix[0].size();
 
-        int l = 0;
-        int r = row*col-1;
+        int left = 0;
+        int right = row * col - 1;
 
-        while(l <= r){
-            int mid = l + (r - l)/2;
+        while(left <= right){
+            int mid = left + (right - left)/2;
+
             int midVal = matrix[mid/col][mid%col];
 
-            if(target == midVal){
+            cout << midVal << endl;
+
+            if(midVal == target){
                 return true;
-            }else if(target > midVal){
-                l = mid + 1;
+            }else if(midVal > target){
+                right = mid - 1;
             }else{
-                r = mid - 1;
+                left = mid + 1;
             }
         }
 
