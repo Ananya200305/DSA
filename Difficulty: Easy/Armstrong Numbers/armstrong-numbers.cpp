@@ -1,15 +1,26 @@
 // User function Template for C++
 class Solution {
   public:
+    int helper(int n){
+        return n*n*n;
+    }
     bool armstrongNumber(int n) {
-        int ans = 0;
-        int copy = n;
-        while(copy){
-            int digit = copy % 10;
-            ans += digit * digit * digit;
-            copy = copy/10;
+        int temp = n;
+        
+        int sum = 0;
+        
+        while(temp > 0){
+            int digit = temp % 10;
+            
+            sum += helper(digit);
+            
+            temp = temp /10;
         }
         
-        return n == ans;
+        if(sum == n){
+            return true;
+        }
+        
+        return false;
     }
 };
