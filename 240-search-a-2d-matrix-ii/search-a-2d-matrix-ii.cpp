@@ -8,8 +8,10 @@ public:
             if(matrix[i][0] <= target && target <= matrix[i][col-1]){
                 int l = 0;
                 int r = col-1;
+
                 while(l <= r){
                     int mid = l + (r-l)/2;
+
                     if(target == matrix[i][mid]){
                         return true;
                     }else if(matrix[i][mid] > target){
