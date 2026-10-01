@@ -7,13 +7,15 @@ public:
 
         for(int i = 0 ; i < 9; i++){
             for(int j = 0 ; j < 9; j++){
-                char c = board[i][j];
-                if(c == '.') continue;
-                int idx = (i/3)*3+(j/3);
-                if(row[i].count(c) || col[j].count(c) || box[idx].count(c)) return false;
-                row[i].insert(c);
-                col[j].insert(c);
-                box[idx].insert(c);
+                char ch = board[i][j];
+                if(ch == '.') continue;
+                int idx = (i/3)*3 + (j/3);
+
+                if(row[i].count(ch) || col[j].count(ch) || box[idx].count(ch)) return false;
+
+                row[i].insert(ch);
+                col[j].insert(ch);
+                box[idx].insert(ch);
             }
         }
 
